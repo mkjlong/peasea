@@ -1,0 +1,20 @@
+.methodPage{
+    padding:20px;
+}
+
+.title {
+    color:white;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.setupList {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.link{
+    text-decoration: none;
+    color:white;
+}

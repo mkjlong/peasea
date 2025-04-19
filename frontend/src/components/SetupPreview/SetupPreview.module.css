@@ -1,0 +1,39 @@
+.preview {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #282732;
+    margin-bottom: 1rem;
+    align-items: left;
+}
+.header{
+    width:calc(100% - 20px);
+    color:white;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 10px;
+    font-family: Alexandria;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: #344A56;
+}
+
+.solutionHeader{
+    color:white;
+    margin: 5px 0px;
+    font-size:18px;
+    font-family: Alexandria;
+    font-weight: 600;
+}
+
+.setupFumen{
+    padding-top: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: min-content;
+    background-color: #181631;
+}
+
+.setupFumen > canvas,.solutionFumen > canvas{
+    height:100px
+}

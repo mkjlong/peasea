@@ -1,0 +1,30 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    background-color: var(--primary-bg-color);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: 0;
+}
+
+
+.sidebar::-webkit-scrollbar, .content::-webkit-scrollbar {
+    display: none;
+}
+
+.content {
+    margin-top: 45px;
+    flex-grow: 100;
+    overflow-y: auto;
+}
+
+.navbar{
+    width: 100%;
+    position: fixed;
+    left:0;
+}

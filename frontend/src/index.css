@@ -1,0 +1,60 @@
+@font-face {
+  font-family: HUN;
+  src: url("./fonts/hun.ttf");
+}
+
+@font-face {
+  font-family: Alexandria;
+  src:url("./fonts/Alexandria.ttf");
+}
+
+body {
+    background-color: rgb(21, 23, 27);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+:root {
+  /* Colors */
+  --primary-bg-color: black;
+  --text-color: #e9e9e9;
+  --accent-color: #4596FF;
+  --border-color: #414141;
+  --description-color: #A2A2A2;
+  --white: white;
+
+  /* Font Sizes */
+  --font-size-title: 1.8rem;
+  --font-size-title-small: 1.4rem;
+  --font-size-set-title: 1.2rem;
+  --font-size-set-title-small: 1.1rem;
+  --font-size-set-description: 0.9rem;
+  --font-size-set-description-small: 0.8rem;
+  --font-size-author-info: 0.85rem;
+  --font-size-author-info-small: 0.75rem;
+
+  /* Spacing */
+  --sidebar-padding: 20px;
+  --sidebar-padding-mobile: 15px;
+  --content-gap: 5px;
+  --content-gap-mobile: 10px;
+  --set-card-padding: 10px;
+
+  /* Sidebar Width */
+  --sidebar-width-large: 30vw;
+  --sidebar-width-medium: 25vw;
+  --sidebar-width-mobile: 100vw;
+
+  /* Other */
+  --font-family-main: 'Inter', sans-serif;
+  --font-family-hun: 'HUN', sans-serif;
+}

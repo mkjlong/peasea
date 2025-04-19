@@ -1,0 +1,124 @@
+
+
+p {
+    margin: 0;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    column-gap: var(--content-gap);
+}
+
+.setCard {
+    display: contents;
+}
+
+hr {
+    border-color: var(--border-color);
+}
+
+h2 {
+    margin: 0;
+}
+
+.setCard > hr {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    width: 100%;
+}
+
+.setTitle {
+    text-align: left;
+    align-self: center;
+    font-size: var(--font-size-set-title);
+}
+
+.setDescription {
+    text-align: left;
+    align-self: center;
+    display: -webkit-box; /* Enable flexbox behavior */
+    font-size: var(--font-size-set-description);
+    color: var(--description-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+
+    /* Limit to 3 lines */
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+.setAuthor {
+    align-self: center;
+    display: flex;
+}
+
+.setAuthor > a {
+    color: var(--accent-color);
+    align-self: center;
+    font-size: var(--font-size-author-info);
+    font-weight: 800;
+    margin-left: 3px;
+}
+
+.setAuthor > img {
+    height: 20px;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        max-width: var(--sidebar-width-mobile);
+        padding: var(--sidebar-padding-mobile);
+    }
+
+    .title {
+        font-size: var(--font-size-title-small);
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+        gap: var(--content-gap-mobile);
+    }
+
+    .setCard {
+        padding: var(--set-card-padding);
+    }
+
+    .setTitle {
+        font-size: var(--font-size-set-title-small);
+    }
+
+    .setDescription {
+        font-size: var(--font-size-set-description-small);
+    }
+
+    .setInfo {
+        font-size: var(--font-size-author-info-small);
+    }
+
+    .setCard > hr {
+        margin: 10px 0;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        max-width: var(--sidebar-width-medium);
+    }
+
+    .title {
+        font-size: var(--font-size-title-small);
+    }
+
+    .setTitle {
+        font-size: var(--font-size-set-title-small);
+    }
+
+    .setDescription {
+        font-size: var(--font-size-set-description-small);
+    }
+}

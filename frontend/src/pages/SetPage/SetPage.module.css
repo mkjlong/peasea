@@ -1,0 +1,30 @@
+.container{
+    color:white;
+    text-align: left;
+}
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: calc(100% - 40px);
+    justify-content: center;
+    padding: 20px;
+}
+
+.titleWrapper{
+    display: flex;
+    position: relative;
+}
+
+.hr{
+    align-self: center;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.title{
+    overflow: hidden;
+    flex-grow: 100;
+}
