@@ -1,11 +1,12 @@
 
 
 .navbar{
+    background-color: black;
     border-bottom: 2px solid var(--accent-color);
     color:white;
     font-family: Alexandria;
     padding:10px;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 25px;
 }
 

@@ -11,6 +11,7 @@ import { NavbarProvider } from "./contexts/NavContext";
 import Navbar from "./components/Navbar/Navbar";
 import Redirect from "./pages/Redirect/Redirect";
 import { PC } from "./scripts/PC";
+import TestPage from "./pages/TestPage/TestPage";
 
 function App() {
     return (
@@ -20,7 +21,7 @@ function App() {
                     <div className={classes.content}>
                         <Routes>
                             <Route path="/" element={<HomePage />} />
-
+                            <Route path="/test" element={<TestPage></TestPage>}></Route>
                             <Route path="/1st" element={<SetPage pc={PC.FIRST} />} />
                             <Route path="/1" element={<Redirect href={"/1st"}/>} />
                             <Route path="/2nd" element={<SetPage pc={PC.SECOND} />} />

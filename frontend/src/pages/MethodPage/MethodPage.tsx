@@ -22,7 +22,7 @@ const MethodPage = ({ pc }: MethodPage) => {
     const { queue } = useParams();
 
     const normalizedQueue = normalizedSort(queue ?? "");
-    const pcGroup = PCGroup.from(queue ?? "");
+    const pcGroup = new PCGroup(queue ?? "");
 
     useEffect(() => {
         setSidebar(`${normalizedQueue} Methods`, <MethodChooser />);
@@ -36,7 +36,12 @@ const MethodPage = ({ pc }: MethodPage) => {
 
     // Filter setups that match this PCGroup queue
     const matchingSetups = testSetups.filter(setup =>
-        setup.getPCGroup().getNormalizedQueue() === normalizedQueue
+        setup.getPCGroup().toString() === normalizedQueue
+    );
+
+    // Update logic to use PCGroup
+    const matchingMethods = testSetups.filter(setup =>
+        setup.getPCGroup().toString() === pcGroup?.toString()
     );
 
     return (

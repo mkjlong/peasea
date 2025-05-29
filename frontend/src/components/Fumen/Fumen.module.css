@@ -1,0 +1,20 @@
+.fumen{
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    width: min-content;
+}
+.fumen > canvas{
+    width: min-content;
+    background-color: #181631;
+}
+
+.comments{
+    border:none;
+    font-size: 18px;
+    font-family: Alexandria;
+    display: flex;
+    background-color: transparent;
+    color:white;
+    text-align: center;
+}

@@ -40,45 +40,38 @@ export function normalizedSort(input: string): string {
 
 //good
 export function normalizeInput(input: string): string {
-    
+    // Precompile regex patterns for better performance
+    const invalidSyntaxRegex = /[^TIJLOSZ\[\]\^\!\*\dpc]/g;
+    const inversionRegex = /\[\^([A-Z]+)\]/g;
+    const wildcardRegex = /\*/g;
+    const bagWithExclamationRegex = /\[([A-Z]+)\]!/g;
+    const bagWithNumberRegex = /\[([A-Z]+)\](\d)/g;
+    const bareBagRegex = /\[([A-Z]+)\](?![pc]\d)/g;
+
     // 1. Remove invalid syntax
-    let cleaned = input.replace(/[^TIJLOSZX\[\]\^\!\*\dpc]/g, "");
+    let cleaned = input.replace(invalidSyntaxRegex, "");
 
     // 2. Inversion: [^TIJ] → [LOSZ]
-    cleaned = cleaned.replace(/\[\^([A-Z]+)\]/g, (_, negated) => PIECES.split("").filter(c => !negated.includes(c)).join(""));
+    cleaned = cleaned.replace(inversionRegex, (_, negated) =>
+        `[${PIECES.split("").filter(c => !negated.includes(c)).join("")}]`
+    );
 
-    // 3. Replace [*...] → [expanded]
-    cleaned = cleaned.replace(/\[([^\]]*?)\]/g, (_, inner) => {
-        const expanded = inner.replace(/\*/g, PIECES);
-        return `[${expanded}]`;
-    });
+    // 3. Replace * with [TIJLOSZ]
+    cleaned = cleaned.replace(wildcardRegex, `[${PIECES}]`);
 
-    // 4. Replace lone * outside of brackets with [TIJLOSZ]
-    cleaned = cleaned.replace(/\*/g, `[${PIECES}]`);
+    // 4. Replace [XYZ]! → [XYZ]pN
+    cleaned = cleaned.replace(bagWithExclamationRegex, (_, bag) => `[${bag}]p${bag.length}`);
 
-    // 5. Replace [XYZ]! → [XYZ]pN
-    cleaned = cleaned.replace(/\[([A-Z]+)\]!/g, (_, bag) => `[${bag}]p${bag.length}`);
+    // 5. Replace [XYZ]N → [XYZ]pN
+    cleaned = cleaned.replace(bagWithNumberRegex, (_, bag, n) => `[${bag}]p${n}`);
 
-    // 6. Replace [XYZ]N → [XYZ]pN
-    cleaned = cleaned.replace(/\[([A-Z]+)\](\d)/g, (_, bag, n) => `[${bag}]p${n}`);
-
-    // 7. Replace bare [XYZ] → [XYZ]p1
-    cleaned = cleaned.replace(/\[([A-Z]+)\](?![pc]\d)/g, (_, bag) => `[${bag}]p1`);
-
-    cleaned = cleaned.replace(/X/g,`[TIJLOSZ]p1`)
-
-    cleaned = cleaned.replace(/\[([^\[\]]+?)\]/g, (match) => {
-        // within each bracketed group, convert `pN` to `cN`
-        return match.replace(/p(\d+)/g, "c$1");
-    });
+    // 6. Replace bare [XYZ] → [XYZ]p1
+    cleaned = cleaned.replace(bareBagRegex, (_, bag) => `[${bag}]p1`);
 
     return cleaned;
 }
 
-
 export function getPermutations(str: string | Set<string>, length: number): Set<string> {
-    console.log("PERMUTING");
-    
     if (typeof str !== "string") {
         const result = new Set<string>();
         for (const s of str) {
@@ -115,41 +108,40 @@ export function getPermutations(str: string | Set<string>, length: number): Set<
     return results;
 }
 
-
-
 export function getCombinations(str: string | Set<string>, length: number): Set<string> {
-    const results: Set<string> = new Set();
-
     if (typeof str !== "string") {
+        const result = new Set<string>();
         for (const s of str) {
-            const sorted = normalizedSort(s); // <- sort before recursion
-            for (const combo of getCombinations(sorted, length)) {
-                results.add(combo);
+            for (const comb of getCombinations(s, length)) {
+                result.add(comb);
             }
         }
-        
-        return results;
+        return result;
     }
 
-    const sorted = normalizedSort(str);
+    const results: Set<string> = new Set();
+    const chars = normalizedSort(str); // Pre-sorted input
 
-    function backtrack(start: number, path: string[]) {
+    const stack: { start: number; path: string[] }[] = [{ start: 0, path: [] }];
+
+    while (stack.length > 0) {
+        const { start, path } = stack.pop()!;
+
         if (path.length === length) {
-            results.add(normalizedSort(path.join("")));
-            return;
+            results.add(normalizedSort(path.join(""))); // Ensure normalizedSort order
+            continue;
         }
-        for (let i = start; i < sorted.length; i++) {
-            path.push(sorted[i]);
-            backtrack(i + 1, path);
-            path.pop();
+
+        for (let i = start; i < chars.length; i++) {
+            // Skip duplicates
+            if (i > start && chars[i] === chars[i - 1]) continue;
+
+            stack.push({ start: i + 1, path: [...path, chars[i]] });
         }
     }
 
-    backtrack(0, []);
     return results;
 }
-
-
 
 export function pieces(input: string): Set<string> {
     input = normalizeInput(input);
@@ -204,7 +196,6 @@ function cartesianProduct(arrays: Set<string>[]): Set<string> {
     }, new Set([""]));
 }
 
-
 export function checkPieces(queue: string, pattern: string): boolean {
     //Fix queue (remove unnessesary pieces, replace * with [TIJLOSZ].)
     pattern = pattern.replaceAll(/\*/g, "[TIJLOSZ]").replaceAll(/[^\[\]^!TIJLOSZ0-7]/g, "");
@@ -225,7 +216,6 @@ export function checkPieces(queue: string, pattern: string): boolean {
 
     return !queue.length;
 }
-
 
 function checkModifiers(queue: string, pattern: string): boolean {
     

@@ -52,30 +52,26 @@ const skinType: Record<number, number> = {
 };
 
 interface Props {
-    fumen: string;
+    page: Page;
     showComments?: boolean;
 }
 const skinImage = new Image();
 skinImage.src = skin;
 
 export const FumenImage: FC<Props> = (props: Props) => {
-    const fumen = props.fumen;
-
-    const pages: Pages = decoder.decode(fumen);
+    const {page} = props;
     const canvasRef: MutableRefObject<HTMLCanvasElement | null> = useRef(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (canvas == null) return;
-        console.log("Rendering " + fumen);
         
-        renderImage(canvas, pages);
-    }, [props.fumen]);
+        renderImage(canvas, page);
+    }, [props.page]);
 
     return (
         <canvas
             ref={canvasRef}
-            {...props}
             width="500"
             height="210"
         />
@@ -139,12 +135,10 @@ const getSkinType = (
     };
 };
 
-const renderImage = (canvas: HTMLCanvasElement|null, pages: Pages) => {
+const renderImage = (canvas: HTMLCanvasElement|null, page: Page) => {
     if (canvas == null) throw new Error("canvas is undefined");
     const context = canvas.getContext("2d");
     if (context == null) throw new Error("context is undefined");
-
-    const page = pages[0];
     
     //BACKGROUND COLOR
     context.fillStyle = "#FFFFFF";

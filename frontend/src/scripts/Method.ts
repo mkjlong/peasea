@@ -1,8 +1,9 @@
 import Setup from "./Setup";
+import { PCGroup } from "./PCGroup";
 
 class Method {
     private name: string;
-    private specificPC: string;
+    private pcGroup: PCGroup; // Changed from specificPC to PCGroup
     private setups: Setup[];
 
     private totalCover: number;
@@ -18,9 +19,9 @@ class Method {
 
     private isOutdated: boolean;
 
-    constructor(name: string, specificPC: string, setups: Setup[]) {
+    constructor(name: string, pcGroup: PCGroup, setups: Setup[]) {
         this.name = name;
-        this.specificPC = specificPC;
+        this.pcGroup = pcGroup; // Initialize PCGroup
         this.setups = setups;
 
         this.totalCover = 0;
@@ -41,8 +42,8 @@ class Method {
     setName(name: string) { this.name = name; }
     getName() { return this.name; }
 
-    setSpecificPC(specificPC: string) { this.specificPC = specificPC; }
-    getSpecificPC() { return this.specificPC; }
+    setPCGroup(pcGroup: PCGroup) { this.pcGroup = pcGroup; }
+    getPCGroup() { return this.pcGroup; } // Getter for PCGroup
 
     addSetup(setup: Setup) { this.setups.push(setup); }
     getSetups(): Setup[] { return this.setups; }

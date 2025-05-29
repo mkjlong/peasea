@@ -1,5 +1,3 @@
-
-
 p {
     margin: 0;
 }
@@ -11,7 +9,10 @@ p {
 }
 
 .setCard {
+    position: relative;
     display: contents;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 hr {
@@ -50,6 +51,14 @@ h2 {
     -webkit-box-orient: vertical;
 }
 
+.setCard:hover {
+    background-color: rgba(69, 150, 255, 0.1);
+}
+
+.setCard.selected {
+    background-color: rgba(69, 150, 255, 0.2);
+    border: 1px solid var(--accent-color);
+}
 
 .setAuthor {
     align-self: center;
@@ -67,6 +76,26 @@ h2 {
 .setAuthor > img {
     height: 20px;
     border-radius: 50%;
+}
+
+.confirmButton {
+    font-family: Alexandria;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.confirmButton:hover {
+    background-color: #3578e5;
 }
 
 @media (max-width: 768px) {

@@ -16,7 +16,7 @@ const SetupPreview = ({ setup }: SetupPreviewProps) => {
             <div className={classes.header}>{setup.getName()}</div>
             <div className={classes.preview}>
                 <div className={classes.setupContainer}>
-                    <Fumen className={classes.setupFumen} fumen={setup.getSetup()}></Fumen>
+                    <Fumen className={classes.setupFumen} fumen={setup.getSetup()} showComments={false}></Fumen>
                 </div>
                 <div className={classes.solutionContainer}>
                     <h1 className={classes.solutionHeader}>
