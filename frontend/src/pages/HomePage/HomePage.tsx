@@ -1,6 +1,6 @@
 import React from "react";
 import { useMemo } from "react";
-import getFumenFromReplay from "../../scripts/upload";
+import getFumenFromReplay from "../../../../scripts/upload";
 import Setup from "../../components/Setup/Setup";
 import Sidebar from "../../components/Sidebar/Sidebar";
 

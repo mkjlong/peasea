@@ -10,39 +10,43 @@ import { PC } from "../../scripts/PC";
 import Setup from "../../scripts/Setup";
 import { PCGroup } from "../../scripts/PCGroup";
 import { normalizedSort } from "../../scripts/pieces";
+import Redirect from "../Redirect/Redirect";
 
-interface MethodPage {
-    pc: PC;
-}
+interface MethodPage {}
 
 const testSetups = Setup.testSetups;
-const MethodPage = ({ pc }: MethodPage) => {
+const MethodPage = () => {
     const { setSidebar } = useSidebar();
     const { setNavbar } = useNavbar();
     const { queue } = useParams();
 
-    const normalizedQueue = normalizedSort(queue ?? "");
     const pcGroup = new PCGroup(queue ?? "");
 
+    if(queue !== pcGroup.getCode().toString()){
+        return <Redirect href={`/${pcGroup.getCode()}`} />;
+    }
+
+    const pc = pcGroup.getPC();
+
     useEffect(() => {
-        setSidebar(`${normalizedQueue} Methods`, <MethodChooser />);
+        setSidebar(`${pcGroup} Methods`, <MethodChooser />);
         setNavbar(
             <>
-                <a className={classes.link} href={`../${pc.getIter()}`}>{`${pc}`}</a> • {normalizedQueue}
+                <a
+                    className={classes.link}
+                    href={`../${pc.getIter()}`}
+                >{`${pc}`}</a>{" "}
+                • {pcGroup.toString()}
             </>,
             <></>
         );
     }, []);
 
-    // Filter setups that match this PCGroup queue
-    const matchingSetups = testSetups.filter(setup =>
-        setup.getPCGroup().toString() === normalizedQueue
-    );
+    console.log(`PCGroup code: ${pcGroup.getCode()}`);
+    
 
-    // Update logic to use PCGroup
-    const matchingMethods = testSetups.filter(setup =>
-        setup.getPCGroup().toString() === pcGroup?.toString()
-    );
+    // Filter setups that match this PCGroup queue
+    const matchingSetups = testSetups.filter((setup) => setup.getPCGroup().equals(pcGroup));
 
     return (
         <div className={classes.methodPage}>
@@ -54,4 +58,4 @@ const MethodPage = ({ pc }: MethodPage) => {
         </div>
     );
 };
-export default MethodPage
+export default MethodPage;

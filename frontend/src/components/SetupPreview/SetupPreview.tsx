@@ -12,7 +12,7 @@ const SETUPS = Setup.testSetups;
 
 const SetupPreview = ({ setup }: SetupPreviewProps) => {
     return (
-        <>
+        <div className={classes.setupPreview}>
             <div className={classes.header}>{setup.getName()}</div>
             <div className={classes.preview}>
                 <div className={classes.setupContainer}>
@@ -25,7 +25,7 @@ const SetupPreview = ({ setup }: SetupPreviewProps) => {
                     <Fumen className={classes.solutionFumen} fumen={setup.getSolution()}></Fumen>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

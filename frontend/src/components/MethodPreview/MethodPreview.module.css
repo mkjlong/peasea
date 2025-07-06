@@ -8,6 +8,8 @@
     margin:10px 0px;
     font-size: 20px;
     z-index: 0;
+    color:white;
+    font-weight: normal;
 }
 
 .methodPreview.complete{
@@ -27,7 +29,7 @@
     left: 0;
     height: 100%;
     width: var(--progress);
-    background: #344a56;
+    background: #264353;
     transition: all 0.2s ease;
     z-index: -1;
 }
@@ -35,14 +37,13 @@
 
 .methodPreview:hover{
     font-weight: 600;
-    background-color: #312f3e;
 }
 
 .methodPreview.complete:hover::before{
-    background-color: #a77e2d;
+    background-color: #97732b;
 }
 
 .methodPreview:hover::before{
-    background: #436071;
+    background: #2a4b5d;
     width: 100%;
 }

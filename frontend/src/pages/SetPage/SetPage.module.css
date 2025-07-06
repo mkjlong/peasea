@@ -7,9 +7,12 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    width: calc(100% - 40px);
+    width: calc(100% - 60px);
     justify-content: center;
-    padding: 20px;
+    padding: 30px;
+    padding-top: 20px;
+    color: #47494e;
+    font-weight: 600;
 }
 
 .titleWrapper{

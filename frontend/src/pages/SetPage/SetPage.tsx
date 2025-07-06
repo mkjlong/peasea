@@ -36,9 +36,6 @@ const SetPage = ({ pc }: SetPage) => {
     const methods: {method:Method,progress:number}[] = [];
     const pcGroups = pieces(`[**c7]c${pc.getBagLength()}`)
 
-    console.log(pcGroups);
-    
-    
     
     for (let queue of pcGroups) {
         const pcGroup = new PCGroup(queue) // Create PCGroup from queue
@@ -59,9 +56,10 @@ const SetPage = ({ pc }: SetPage) => {
 
     return (
         <div className={classes.container} ref={containerRef}>
+            {methods.filter(e=>e.progress===1).length}/{methods.length} complete
             {methods.map((method, i) =>
                 <div
-                    key={method.method.getPCGroup().toString()}
+                    key={method.method.getPCGroup().getCode()}
                     ref={el => methodRefs.current[i] = el}
                 >
                     <MethodPreview method={method.method} progress={method.progress} />

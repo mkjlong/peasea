@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es2015",
+      "target": "es2024",
       "lib": [
         "dom",
         "dom.iterable",
@@ -22,6 +22,6 @@
     },
     "include": [
       "src"
-    ]
+, "../scripts/Method.ts", "../scripts/PC.ts", "../scripts/PCGroup.ts", "../scripts/pieces.ts", "../scripts/Queue.ts", "../scripts/Set.ts", "../scripts/Setup.ts", "../scripts/Tetrimino.ts", "../scripts/upload.ts"    ]
   }
   

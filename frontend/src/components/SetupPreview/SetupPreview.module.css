@@ -1,10 +1,17 @@
+.setupPreview{
+    margin: 30px 0px;
+    /*border: 1px solid #373D41;
+    border-style: dashed;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;*/
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
 .preview {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    background: #282732;
+    padding: 10px 30px;
     margin-bottom: 1rem;
-    align-items: left;
 }
 .header{
     width:calc(100% - 20px);
@@ -14,8 +21,7 @@
     padding: 10px;
     font-family: Alexandria;
     font-size: 20px;
-    font-weight: 500;
-    background-color: #344A56;
+    font-weight: 600;
 }
 
 .solutionHeader{
@@ -23,7 +29,7 @@
     margin: 5px 0px;
     font-size:18px;
     font-family: Alexandria;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .setupFumen{

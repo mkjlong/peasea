@@ -4,8 +4,9 @@ import classes from "./MethodPreview.module.css";
 
 const MethodPreview = ({ method, progress }: { method: Method; progress: number }) => {
     function redirect() {
-        document.location.href += (!document.location.href.endsWith("/") ? "/" : "") + `${method.getPCGroup().toString()}`;
+        document.location.href =  `/${method.getPCGroup().getCode()}`;
     }
+    
 
     return (
         <div
