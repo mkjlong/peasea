@@ -1,4 +1,4 @@
-import { normalizeInput, getCombinations } from "../../../../scripts/pieces";
+import { normalizeInput, getCombinations } from "../../scripts/pieces";
 
 const TestPage = () => {
     return <></>;

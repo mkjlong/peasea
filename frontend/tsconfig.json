@@ -22,6 +22,6 @@
     },
     "include": [
       "src"
-, "../scripts/Method.ts", "../scripts/PC.ts", "../scripts/PCGroup.ts", "../scripts/pieces.ts", "../scripts/Queue.ts", "../scripts/Set.ts", "../scripts/Setup.ts", "../scripts/Tetrimino.ts", "../scripts/upload.ts"    ]
+, "src/scripts/Method.ts", "src/scripts/PC.ts", "src/scripts/PCGroup.ts", "src/scripts/pieces.ts", "src/scripts/Queue.ts", "src/scripts/Set.ts", "src/scripts/Setup.ts", "src/scripts/Tetrimino.ts", "src/scripts/upload.ts"    ]
   }
   
